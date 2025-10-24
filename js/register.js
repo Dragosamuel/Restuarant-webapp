@@ -1,0 +1,98 @@
+(function ($) {
+    "use strict";
+
+    // Spinner
+    var spinner = function () {
+        setTimeout(function () {
+            if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
+            }
+        }, 1);
+    };
+    spinner();
+    
+    
+    // Initiate the wowjs
+    new WOW().init();
+
+
+    // Sticky Navbar
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 45) {
+            $('.navbar').addClass('sticky-top shadow-sm');
+        } else {
+            $('.navbar').removeClass('sticky-top shadow-sm');
+        }
+    });
+    
+    
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
+    });
+    $('.back-to-top').click(function () {
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        return false;
+    });
+
+
+    // Handle registration form submission
+    $('#registerForm').submit(function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const name = $('#name').val();
+        const email = $('#email').val();
+        const password = $('#password').val();
+        const confirmPassword = $('#confirmPassword').val();
+        
+        // Simple validation
+        if (!name || !email || !password || !confirmPassword) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+        
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            return;
+        }
+        
+        // Prepare data for API
+        const registerData = {
+            name: name,
+            email: email,
+            password: password
+        };
+        
+        // Send to backend API
+        $.ajax({
+            url: '/api/auth/register',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(registerData),
+            success: function(response) {
+                if (response.success) {
+                    alert('Registration successful! You can now login.');
+                    // Redirect to login page
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error registering:', error);
+                alert('Error registering. Please try again.');
+            }
+        });
+    });
+
+})(jQuery);
