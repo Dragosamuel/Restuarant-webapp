@@ -323,9 +323,9 @@
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="index.html">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+                                <a href="#">Cookies</a>
+                                <a href="#">Help</a>
+                                <a href="#">FQAs</a>
                             </div>
                         </div>
                     </div>
@@ -352,6 +352,22 @@
 
     <!-- Template Javascript -->
     <script src="js/admin.js"></script>
+    <script>
+        // Handle logout
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutLink = document.querySelector('a[href="logout"]');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove auth token from localStorage
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('user');
+                    // Redirect to login page
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
