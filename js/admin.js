@@ -11,6 +11,12 @@
     };
     spinner();
     
+    // Check if user is authenticated when page loads
+    $(document).ready(function() {
+        if (!checkAuth()) {
+            window.location.href = 'login.html';
+        }
+    });
     
     // Initiate the wowjs
     new WOW().init();
@@ -42,19 +48,25 @@
 
     // Load reservations when modal is shown
     $('#reservationsModal').on('show.bs.modal', function (e) {
-        loadReservations();
+        if (checkAuth()) {
+            loadReservations();
+        }
     });
 
 
     // Load menu items when modal is shown
     $('#menuModal').on('show.bs.modal', function (e) {
-        loadMenuItems();
+        if (checkAuth()) {
+            loadMenuItems();
+        }
     });
 
 
     // Load messages when modal is shown
     $('#messagesModal').on('show.bs.modal', function (e) {
-        loadMessages();
+        if (checkAuth()) {
+            loadMessages();
+        }
     });
 
 
@@ -99,7 +111,9 @@
             },
             error: function(xhr, status, error) {
                 console.error('Error loading reservations:', error);
-                alert('Error loading reservations. Please try again.');
+                console.error('Response:', xhr.responseText);
+                console.error('Status:', xhr.status);
+                alert('Error loading reservations. Please try again. Status: ' + xhr.status + ', Error: ' + error);
             }
         });
     }
@@ -182,7 +196,9 @@
             },
             error: function(xhr, status, error) {
                 console.error('Error loading menu items:', error);
-                alert('Error loading menu items. Please try again.');
+                console.error('Response:', xhr.responseText);
+                console.error('Status:', xhr.status);
+                alert('Error loading menu items. Please try again. Status: ' + xhr.status + ', Error: ' + error);
             }
         });
     }
@@ -350,7 +366,9 @@
             },
             error: function(xhr, status, error) {
                 console.error('Error loading messages:', error);
-                alert('Error loading messages. Please try again.');
+                console.error('Response:', xhr.responseText);
+                console.error('Status:', xhr.status);
+                alert('Error loading messages. Please try again. Status: ' + xhr.status + ', Error: ' + error);
             }
         });
     }
@@ -468,9 +486,21 @@
 
     // Get auth token from localStorage
     function getAuthToken() {
-        // In a real application, you would get this from localStorage or a secure storage
-        // For now, we'll return a placeholder
-        return localStorage.getItem('authToken') || '';
+        // Get the actual token from localStorage
+        const token = localStorage.getItem('authToken') || '';
+        console.log('Auth token:', token);
+        return token;
+    }
+
+    // Check if user is authenticated
+    function checkAuth() {
+        const token = getAuthToken();
+        if (!token) {
+            alert('You are not logged in. Redirecting to login page.');
+            window.location.href = 'login.html';
+            return false;
+        }
+        return true;
     }
 
 })(jQuery);

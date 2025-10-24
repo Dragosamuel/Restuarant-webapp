@@ -80,7 +80,9 @@
             },
             error: function(xhr, status, error) {
                 console.error('Error logging in:', error);
-                alert('Error logging in. Please try again.');
+                console.error('Response:', xhr.responseText);
+                console.error('Status:', xhr.status);
+                alert('Error logging in. Please try again. Status: ' + xhr.status + ', Error: ' + error);
             }
         });
     });
