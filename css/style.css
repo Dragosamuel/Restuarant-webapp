@@ -477,3 +477,150 @@
     padding-right: 0;
     border-right: none;
 }
+
+/*** Chat Widget ***/
+.chat-widget {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.chat-widget.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-header {
+    background: var(--primary);
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 320px;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+.message.bot-message {
+    background: #f1f1f1;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.message.user-message {
+    background: var(--primary);
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.message.bot-message a {
+    color: #0056b3;
+}
+
+.message.user-message a {
+    color: #e6f7ff;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-toggle:hover {
+    background: #e09010;
+}
+
+/* Responsive design for chat widget */
+@media (max-width: 576px) {
+    .chat-widget {
+        width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+    }
+}

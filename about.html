@@ -282,6 +282,39 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
+    <!-- Chat Widget -->
+    <div id="chatWidget" class="chat-widget">
+        <div class="chat-header" id="chatHeader">
+            <span>Need Help?</span>
+            <button id="closeChat" class="close-btn" aria-label="Close chat">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Hello! 👋 How can I help you today?
+                </div>
+                <div class="message bot-message">
+                    You can ask me questions like:
+                    <ul>
+                        <li>What are your opening hours?</li>
+                        <li>Do you offer vegetarian options?</li>
+                        <li>How can I make a reservation?</li>
+                    </ul>
+                    Or check out our <a href="faq.html" target="_blank">FAQ page</a> for more information.
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userMessage" placeholder="Type your message...">
+                <button id="sendMessage" aria-label="Send message">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <button id="chatToggle" class="chat-toggle" aria-label="Open chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -296,6 +329,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/chat.js"></script>
 </body>
 
 </html>
