@@ -557,6 +557,18 @@
     margin-left: auto;
 }
 
+.message.agent-message {
+    background: #e6f7ff;
+    border-left: 3px solid var(--primary);
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.sender-name {
+    font-weight: bold;
+    color: var(--primary);
+}
+
 .message a {
     color: #007bff;
     text-decoration: underline;
@@ -568,6 +580,10 @@
 
 .message.user-message a {
     color: #e6f7ff;
+}
+
+.message.agent-message a {
+    color: #0056b3;
 }
 
 .chat-input {
