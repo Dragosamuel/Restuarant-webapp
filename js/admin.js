@@ -90,8 +90,33 @@
             price: parseFloat($('#menuPrice').val()),
             category: $('#menuCategory').val(),
             image: $('#menuImage').val(),
-            isAvailable: $('#menuAvailable').is(':checked')
+            isAvailable: $('#menuAvailable').is(':checked'),
+            // AR features
+            arModel: {
+                modelUrl: $('#arModelUrl').val(),
+                modelType: $('#arModelType').val(),
+                thumbnail: $('#arThumbnail').val(),
+                dimensions: {
+                    width: $('#arWidth').val() ? parseFloat($('#arWidth').val()) : undefined,
+                    height: $('#arHeight').val() ? parseFloat($('#arHeight').val()) : undefined,
+                    depth: $('#arDepth').val() ? parseFloat($('#arDepth').val()) : undefined
+                }
+            },
+            // Voice features
+            voiceKeyword: $('#voiceKeyword').val(),
+            // Accessibility features
+            accessibility: {
+                audioDescription: $('#audioDescription').val(),
+                highContrast: $('#highContrast').is(':checked'),
+                screenReaderText: $('#screenReaderText').val()
+            }
         };
+        
+        // Clean up empty AR dimensions
+        if (!menuItemData.arModel.dimensions.width) delete menuItemData.arModel.dimensions.width;
+        if (!menuItemData.arModel.dimensions.height) delete menuItemData.arModel.dimensions.height;
+        if (!menuItemData.arModel.dimensions.depth) delete menuItemData.arModel.dimensions.depth;
+        if (Object.keys(menuItemData.arModel.dimensions).length === 0) delete menuItemData.arModel.dimensions;
         
         if (menuId) {
             // Update existing menu item
@@ -642,6 +667,28 @@
                     $('#menuCategory').val(item.category);
                     $('#menuImage').val(item.image || '');
                     $('#menuAvailable').prop('checked', item.isAvailable);
+                    
+                    // AR features
+                    if (item.arModel) {
+                        $('#arModelUrl').val(item.arModel.modelUrl || '');
+                        $('#arModelType').val(item.arModel.modelType || '');
+                        $('#arThumbnail').val(item.arModel.thumbnail || '');
+                        if (item.arModel.dimensions) {
+                            $('#arWidth').val(item.arModel.dimensions.width || '');
+                            $('#arHeight').val(item.arModel.dimensions.height || '');
+                            $('#arDepth').val(item.arModel.dimensions.depth || '');
+                        }
+                    }
+                    
+                    // Voice features
+                    $('#voiceKeyword').val(item.voiceKeyword || '');
+                    
+                    // Accessibility features
+                    if (item.accessibility) {
+                        $('#audioDescription').val(item.accessibility.audioDescription || '');
+                        $('#highContrast').prop('checked', item.accessibility.highContrast || false);
+                        $('#screenReaderText').val(item.accessibility.screenReaderText || '');
+                    }
                 } else {
                     alert('Error loading menu item: ' + response.message);
                 }

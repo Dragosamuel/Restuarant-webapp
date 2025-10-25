@@ -212,6 +212,86 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <!-- AR Features -->
+                                        <div class="col-12">
+                                            <h5>AR Features</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="arModelUrl" placeholder="AR Model URL">
+                                                <label for="arModelUrl">AR Model URL</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="arModelType">
+                                                    <option value="">Select Model Type</option>
+                                                    <option value="glb">GLB</option>
+                                                    <option value="gltf">GLTF</option>
+                                                    <option value="obj">OBJ</option>
+                                                    <option value="fbx">FBX</option>
+                                                </select>
+                                                <label for="arModelType">Model Type</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="arThumbnail" placeholder="Thumbnail URL">
+                                                <label for="arThumbnail">Thumbnail URL</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control" id="arWidth" placeholder="Width" step="0.1">
+                                                <label for="arWidth">Width</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control" id="arHeight" placeholder="Height" step="0.1">
+                                                <label for="arHeight">Height</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control" id="arDepth" placeholder="Depth" step="0.1">
+                                                <label for="arDepth">Depth</label>
+                                            </div>
+                                        </div>
+                                        <!-- Voice Features -->
+                                        <div class="col-12">
+                                            <h5>Voice Features</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="voiceKeyword" placeholder="Voice Keyword">
+                                                <label for="voiceKeyword">Voice Keyword</label>
+                                            </div>
+                                        </div>
+                                        <!-- Accessibility Features -->
+                                        <div class="col-12">
+                                            <h5>Accessibility Features</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="audioDescription" placeholder="Audio Description">
+                                                <label for="audioDescription">Audio Description</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="screenReaderText" placeholder="Screen Reader Text">
+                                                <label for="screenReaderText">Screen Reader Text</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="highContrast">
+                                                <label class="form-check-label" for="highContrast">
+                                                    High Contrast Mode
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100 py-3" type="submit">Save Menu Item</button>
                                         </div>
