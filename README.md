@@ -10,6 +10,12 @@ A complete full-stack restaurant website built with Node.js, Express, MongoDB, a
 - **Authentication**: JWT-based user authentication
 - **Admin Dashboard**: Manage reservations, menu items, and customer messages
 - **API**: RESTful API for all backend functionality
+- **Advanced Features**:
+  - Augmented Reality (AR) menu previews
+  - Voice-activated ordering system
+  - Chatbot for quick assistance
+  - Smart QR code ordering for in-store dining
+  - Multi-language and accessibility support
 
 ## Project Structure
 
@@ -104,7 +110,7 @@ restoran/
 
 - `index.html` - Home page
 - `about.html` - About the restaurant
-- `menu.html` - Menu items
+- `menu.html` - Menu items with advanced features
 - `booking.html` - Reservation form
 - `service.html` - Services offered
 - `team.html` - Team members
@@ -118,10 +124,30 @@ restoran/
 
 The admin dashboard allows administrators to:
 - View and manage reservations
-- Add, edit, and remove menu items
+- Add, edit, and remove menu items with AR, voice, and accessibility features
 - View and respond to customer messages
 
 To access the admin dashboard, you need to be logged in as an admin user.
+
+## Advanced Features
+
+### Augmented Reality (AR) Menu Previews
+Visualize dishes before ordering with our AR feature. Menu items with 3D models can be previewed in augmented reality directly from the menu page.
+
+### Voice-Activated Ordering System
+Order menu items using voice commands. Click the voice button and speak your order for a hands-free experience.
+
+### Chatbot for Quick Assistance
+Get instant help with our AI-powered chatbot. Available 24/7 to answer questions about the menu, hours, reservations, and more.
+
+### Smart QR Code Ordering
+Scan QR codes at your table to access the digital menu and place orders directly from your smartphone.
+
+### Multi-Language and Accessibility Support
+- Support for multiple languages (English, Spanish, French, and more)
+- High contrast mode for visually impaired users
+- Screen reader support
+- Audio descriptions for menu items
 
 ## Development
 

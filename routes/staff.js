@@ -1,19 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Staff = require('../models/Staff');
-const auth = require('../middleware/auth');
+const { protect, admin } = require('../middleware/auth');
 
 // Get all staff members
-router.get('/', auth, async (req, res) => {
+router.get('/', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.find().sort({ name: 1 });
     res.json({ 
       success: true, 
@@ -29,16 +21,8 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Get staff member by ID
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.findById(req.params.id);
     if (!staff) {
       return res.status(404).json({ 
@@ -61,16 +45,8 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 // Create new staff member
-router.post('/', auth, async (req, res) => {
+router.post('/', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const { name, email, phone, position, department, hireDate } = req.body;
 
     // Check if staff member already exists
@@ -107,16 +83,8 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Update staff member
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const { name, email, phone, position, department, hireDate, status } = req.body;
 
     const staff = await Staff.findById(req.params.id);
@@ -152,16 +120,8 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 // Delete staff member
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.findById(req.params.id);
     if (!staff) {
       return res.status(404).json({ 
@@ -185,16 +145,8 @@ router.delete('/:id', auth, async (req, res) => {
 });
 
 // Add shift to staff member
-router.post('/:id/shifts', auth, async (req, res) => {
+router.post('/:id/shifts', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.findById(req.params.id);
     if (!staff) {
       return res.status(404).json({ 
@@ -229,16 +181,8 @@ router.post('/:id/shifts', auth, async (req, res) => {
 });
 
 // Update shift status
-router.put('/:id/shifts/:shiftId', auth, async (req, res) => {
+router.put('/:id/shifts/:shiftId', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.findById(req.params.id);
     if (!staff) {
       return res.status(404).json({ 
@@ -274,16 +218,8 @@ router.put('/:id/shifts/:shiftId', auth, async (req, res) => {
 });
 
 // Update performance metrics
-router.put('/:id/performance', auth, async (req, res) => {
+router.put('/:id/performance', protect, admin, async (req, res) => {
   try {
-    // Only admin can access
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ 
-        success: false, 
-        message: 'Access denied. Admin only.' 
-      });
-    }
-
     const staff = await Staff.findById(req.params.id);
     if (!staff) {
       return res.status(404).json({ 
