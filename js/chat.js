@@ -36,10 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage(message, 'user');
             userMessageInput.value = '';
 
-            // Process message and generate response
-            setTimeout(() => {
-                generateResponse(message);
-            }, 500);
+            // Send message to support team (in a real implementation, this would connect to a backend service)
+            sendToSupportTeam(message);
         }
     }
 
@@ -53,40 +51,57 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Function to generate response based on user message
-    function generateResponse(userMessage) {
-        const lowerCaseMessage = userMessage.toLowerCase();
-        let response = '';
+    // Function to send message to support team
+    function sendToSupportTeam(message) {
+        // In a real implementation, this would connect to a backend service
+        // For now, we'll simulate a response from support after a delay
+        setTimeout(() => {
+            // Simulate support team response
+            const responses = [
+                "Thank you for your message. Our support team will respond shortly.",
+                "We've received your message and a support representative will assist you soon.",
+                "Thanks for contacting us. We're looking into your request and will get back to you as soon as possible.",
+                "Your message has been sent to our support team. We'll respond within 24 hours.",
+                "We appreciate your patience. A support agent will be with you shortly."
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            addMessage(randomResponse, 'bot');
+        }, 2000);
+        
+        // In a real implementation, you would use something like:
+        /*
+        fetch('/api/chat/support', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                userId: getUserId(), // Get user ID from session/storage
+                timestamp: new Date().toISOString()
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle response from support team
+            if (data.success) {
+                addMessage("Your message has been sent to our support team.", 'bot');
+            } else {
+                addMessage("Sorry, there was an issue sending your message. Please try again.", 'bot');
+            }
+        })
+        .catch(error => {
+            console.error('Error sending message:', error);
+            addMessage("Sorry, there was an issue sending your message. Please try again.", 'bot');
+        });
+        */
+    }
 
-        if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) {
-            response = "Hello! How can I assist you today? You can ask me about our menu, reservations, or opening hours.";
-        } else if (lowerCaseMessage.includes('hour') || lowerCaseMessage.includes('open') || lowerCaseMessage.includes('time')) {
-            response = "We are open Monday to Saturday from 9:00 AM to 9:00 PM, and on Sundays from 10:00 AM to 8:00 PM.";
-        } else if (lowerCaseMessage.includes('menu') || lowerCaseMessage.includes('food')) {
-            response = "You can view our full menu on our <a href='menu.html' target='_blank'>Menu page</a>. We offer a variety of dishes including vegetarian options.";
-        } else if (lowerCaseMessage.includes('reservation') || lowerCaseMessage.includes('book') || lowerCaseMessage.includes('table')) {
-            response = "You can make a reservation through our <a href='booking.html' target='_blank'>Booking page</a> or by calling us at +256761365727.";
-        } else if (lowerCaseMessage.includes('vegetarian') || lowerCaseMessage.includes('vegan')) {
-            response = "Yes, we offer several vegetarian and vegan options. Please let us know about any dietary restrictions when making your reservation.";
-        } else if (lowerCaseMessage.includes('location') || lowerCaseMessage.includes('address') || lowerCaseMessage.includes('where')) {
-            response = "We are located at Bugema University, Kampala, Uganda. You can find us on Google Maps or use a ride-sharing app to get here.";
-        } else if (lowerCaseMessage.includes('contact') || lowerCaseMessage.includes('phone') || lowerCaseMessage.includes('email')) {
-            response = "You can reach us at +256761365727 or email us at dasahrestaurant@gmail.com. You can also use our <a href='contact.html' target='_blank'>Contact form</a>.";
-        } else if (lowerCaseMessage.includes('faq') || lowerCaseMessage.includes('question') || lowerCaseMessage.includes('help')) {
-            response = "You can find answers to common questions on our <a href='faq.html' target='_blank'>FAQ page</a>.";
-        } else if (lowerCaseMessage.includes('thank')) {
-            response = "You're welcome! Is there anything else I can help you with?";
-        } else {
-            response = "I'm sorry, I didn't understand that. You can check our <a href='faq.html' target='_blank'>FAQ page</a> for more information or ask me about our menu, reservations, or opening hours.";
-        }
-
-        // Add bot response to chat
-        const responseDiv = document.createElement('div');
-        responseDiv.classList.add('message');
-        responseDiv.classList.add('bot-message');
-        responseDiv.innerHTML = response;
-        chatMessages.appendChild(responseDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Function to get user ID (in a real app, this would come from authentication)
+    function getUserId() {
+        // This is a placeholder - in a real app you would get this from localStorage or session
+        return localStorage.getItem('userId') || 'guest_' + Date.now();
     }
 
     // Add initial messages when chat opens for the first time
@@ -97,7 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const introMessage = document.createElement('div');
                 introMessage.classList.add('message');
                 introMessage.classList.add('bot-message');
-                introMessage.innerHTML = "Welcome to Dasah Restaurant! I'm here to help answer your questions. What would you like to know?";
+                
+                // Check if we're on the admin page
+                if (window.location.pathname.includes('admin')) {
+                    introMessage.innerHTML = "Welcome to Dasah Restaurant Admin Support! Please describe your issue and a support representative will assist you shortly.";
+                } else {
+                    introMessage.innerHTML = "Welcome to Dasah Restaurant Support! Please describe your issue and a support representative will assist you shortly.";
+                }
+                
                 chatMessages.appendChild(introMessage);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 600);
