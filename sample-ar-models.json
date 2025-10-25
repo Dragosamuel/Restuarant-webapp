@@ -1,0 +1,82 @@
+{
+  "arModels": [
+    {
+      "id": "burger-001",
+      "name": "Classic Cheeseburger",
+      "modelUrl": "/ar-models/cheeseburger.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-1.jpg",
+      "dimensions": {
+        "width": 12.5,
+        "height": 8.0,
+        "depth": 12.5
+      },
+      "description": "A juicy beef patty with melted cheese, fresh lettuce, tomato, and our special sauce on a toasted bun."
+    },
+    {
+      "id": "pizza-001",
+      "name": "Margherita Pizza",
+      "modelUrl": "/ar-models/margherita-pizza.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-2.jpg",
+      "dimensions": {
+        "width": 30.0,
+        "height": 3.0,
+        "depth": 30.0
+      },
+      "description": "Fresh mozzarella, tomatoes, and basil on our thin and crispy crust."
+    },
+    {
+      "id": "salad-001",
+      "name": "Caesar Salad",
+      "modelUrl": "/ar-models/caesar-salad.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-3.jpg",
+      "dimensions": {
+        "width": 20.0,
+        "height": 5.0,
+        "depth": 20.0
+      },
+      "description": "Crisp romaine lettuce, parmesan cheese, croutons, and our homemade Caesar dressing."
+    },
+    {
+      "id": "pasta-001",
+      "name": "Spaghetti Carbonara",
+      "modelUrl": "/ar-models/spaghetti-carbonara.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-4.jpg",
+      "dimensions": {
+        "width": 25.0,
+        "height": 8.0,
+        "depth": 25.0
+      },
+      "description": "Al dente spaghetti with pancetta, eggs, parmesan cheese, and black pepper."
+    },
+    {
+      "id": "steak-001",
+      "name": "Ribeye Steak",
+      "modelUrl": "/ar-models/ribeye-steak.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-5.jpg",
+      "dimensions": {
+        "width": 20.0,
+        "height": 6.0,
+        "depth": 15.0
+      },
+      "description": "12oz ribeye steak cooked to perfection, served with roasted vegetables and mashed potatoes."
+    },
+    {
+      "id": "dessert-001",
+      "name": "Chocolate Lava Cake",
+      "modelUrl": "/ar-models/chocolate-lava-cake.glb",
+      "modelType": "glb",
+      "thumbnail": "/img/menu-6.jpg",
+      "dimensions": {
+        "width": 10.0,
+        "height": 5.0,
+        "depth": 10.0
+      },
+      "description": "Warm chocolate cake with a molten center, served with vanilla ice cream."
+    }
+  ]
+}

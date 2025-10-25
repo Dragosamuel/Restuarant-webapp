@@ -90,6 +90,44 @@ const updateMenuItem = async (req, res) => {
     delete updateData.createdAt;
     delete updateData.updatedAt;
 
+    // Handle nested objects properly
+    if (req.body.arModel) {
+      updateData.arModel = {};
+      if (req.body.arModel.modelUrl !== undefined) updateData.arModel.modelUrl = req.body.arModel.modelUrl;
+      if (req.body.arModel.modelType !== undefined) updateData.arModel.modelType = req.body.arModel.modelType;
+      if (req.body.arModel.thumbnail !== undefined) updateData.arModel.thumbnail = req.body.arModel.thumbnail;
+      
+      if (req.body.arModel.dimensions) {
+        updateData.arModel.dimensions = {};
+        if (req.body.arModel.dimensions.width !== undefined) updateData.arModel.dimensions.width = req.body.arModel.dimensions.width;
+        if (req.body.arModel.dimensions.height !== undefined) updateData.arModel.dimensions.height = req.body.arModel.dimensions.height;
+        if (req.body.arModel.dimensions.depth !== undefined) updateData.arModel.dimensions.depth = req.body.arModel.dimensions.depth;
+        
+        // Remove dimensions if empty
+        if (Object.keys(updateData.arModel.dimensions).length === 0) {
+          delete updateData.arModel.dimensions;
+        }
+      }
+      
+      // Remove arModel if empty
+      if (Object.keys(updateData.arModel).length === 0) {
+        delete updateData.arModel;
+      }
+    }
+
+    // Handle accessibility object
+    if (req.body.accessibility) {
+      updateData.accessibility = {};
+      if (req.body.accessibility.audioDescription !== undefined) updateData.accessibility.audioDescription = req.body.accessibility.audioDescription;
+      if (req.body.accessibility.highContrast !== undefined) updateData.accessibility.highContrast = req.body.accessibility.highContrast;
+      if (req.body.accessibility.screenReaderText !== undefined) updateData.accessibility.screenReaderText = req.body.accessibility.screenReaderText;
+      
+      // Remove accessibility if empty
+      if (Object.keys(updateData.accessibility).length === 0) {
+        delete updateData.accessibility;
+      }
+    }
+
     const menuItem = await Menu.findByIdAndUpdate(
       req.params.id,
       updateData,

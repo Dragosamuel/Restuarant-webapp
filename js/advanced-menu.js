@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load menu items with advanced features
     loadAdvancedMenuItems();
+    
+    // Initialize menu item buttons
+    initMenuItemButtons();
 });
 
 // Initialize AR Viewer
@@ -24,8 +27,9 @@ function initARViewer() {
     // In a real implementation, you would integrate with an AR library like model-viewer
     // For now, we'll just add event listeners for AR preview buttons
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('ar-preview-btn')) {
-            const menuItemId = e.target.dataset.itemId;
+        if (e.target.classList.contains('ar-preview-btn') || e.target.closest('.ar-preview-btn')) {
+            const button = e.target.classList.contains('ar-preview-btn') ? e.target : e.target.closest('.ar-preview-btn');
+            const menuItemId = button.dataset.itemId;
             showARPreview(menuItemId);
         }
     });
@@ -75,6 +79,23 @@ function initVoiceOrdering() {
             voiceBtn.style.display = 'none';
         }
     }
+}
+
+// Initialize Menu Item Buttons
+function initMenuItemButtons() {
+    // Add event listeners for voice order buttons on menu items
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('voice-order-btn') || e.target.closest('.voice-order-btn')) {
+            const button = e.target.classList.contains('voice-order-btn') ? e.target : e.target.closest('.voice-order-btn');
+            const voiceKeyword = button.dataset.voiceKeyword;
+            simulateVoiceOrder(voiceKeyword);
+        }
+    });
+}
+
+// Simulate Voice Order
+function simulateVoiceOrder(keyword) {
+    alert(`Voice order simulation for: "${keyword}"\nIn a full implementation, this would use the Web Speech API to process voice commands.`);
 }
 
 // Toggle Voice Recognition
