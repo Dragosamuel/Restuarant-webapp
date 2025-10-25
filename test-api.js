@@ -59,6 +59,37 @@ async function testSendContactMessage() {
   }
 }
 
+// Test create staff member
+async function testCreateStaffMember() {
+  try {
+    const staffData = {
+      name: 'Test Staff',
+      email: 'test@example.com',
+      phone: '123-456-7890',
+      position: 'waiter',
+      department: 'front-of-house',
+      hireDate: new Date()
+    };
+    
+    // Note: This will fail without authentication
+    const response = await axios.post(`${BASE_URL}/api/staff`, staffData);
+    console.log('Create Staff Member:', response.data);
+  } catch (error) {
+    console.error('Create Staff Member Error:', error.message);
+  }
+}
+
+// Test get all staff members
+async function testGetStaffMembers() {
+  try {
+    // Note: This will fail without authentication
+    const response = await axios.get(`${BASE_URL}/api/staff`);
+    console.log('Staff Members:', response.data);
+  } catch (error) {
+    console.error('Staff Members Error:', error.message);
+  }
+}
+
 // Run all tests
 async function runAllTests() {
   console.log('Running API Tests...\n');
@@ -75,6 +106,12 @@ async function runAllTests() {
   await testSendContactMessage();
   console.log('');
   
+  await testCreateStaffMember();
+  console.log('');
+  
+  await testGetStaffMembers();
+  console.log('');
+  
   console.log('API Tests Completed');
 }
 
@@ -88,5 +125,7 @@ module.exports = {
   testGetMenuItems,
   testCreateReservation,
   testSendContactMessage,
+  testCreateStaffMember,
+  testGetStaffMembers,
   runAllTests
 };

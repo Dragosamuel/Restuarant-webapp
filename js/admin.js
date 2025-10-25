@@ -70,6 +70,15 @@
     });
 
 
+    // Load staff when modal is shown
+    $('#staffModal').on('show.bs.modal', function (e) {
+        if (checkAuth()) {
+            loadStaff();
+            loadStaffForSelectors();
+        }
+    });
+
+
     // Handle menu item form submission
     $('#menuItemForm').submit(function(e) {
         e.preventDefault();
@@ -91,6 +100,68 @@
             // Create new menu item
             createMenuItem(menuItemData);
         }
+    });
+
+
+    // Handle staff form submission
+    $('#staffForm').submit(function(e) {
+        e.preventDefault();
+        
+        const staffId = $('#staffId').val();
+        const staffData = {
+            name: $('#staffName').val(),
+            email: $('#staffEmail').val(),
+            phone: $('#staffPhone').val(),
+            position: $('#staffPosition').val(),
+            department: $('#staffDepartment').val(),
+            hireDate: $('#staffHireDate').val()
+        };
+        
+        if (staffId) {
+            // Update existing staff member
+            updateStaffMember(staffId, staffData);
+        } else {
+            // Create new staff member
+            createStaffMember(staffData);
+        }
+    });
+
+
+    // Handle add shift button click
+    $('#addShiftBtn').click(function() {
+        const staffId = $('#shiftStaffSelect').val();
+        const date = $('#shiftDate').val();
+        const startTime = $('#shiftStartTime').val();
+        const endTime = $('#shiftEndTime').val();
+        const shiftType = $('#shiftType').val();
+        
+        if (!staffId || !date || !startTime || !endTime || !shiftType) {
+            alert('Please fill in all shift fields');
+            return;
+        }
+        
+        addShift(staffId, { date, startTime, endTime, shiftType });
+    });
+
+
+    // Handle update performance button click
+    $('#updatePerformanceBtn').click(function() {
+        const staffId = $('#performanceStaffSelect').val();
+        const attendanceRate = $('#attendanceRate').val();
+        const punctuality = $('#punctuality').val();
+        const overallRating = $('#overallRating').val();
+        
+        if (!staffId) {
+            alert('Please select a staff member');
+            return;
+        }
+        
+        const performanceData = {};
+        if (attendanceRate) performanceData.attendanceRate = parseFloat(attendanceRate);
+        if (punctuality) performanceData.punctuality = parseFloat(punctuality);
+        if (overallRating) performanceData.overallRating = parseFloat(overallRating);
+        
+        updatePerformance(staffId, performanceData);
     });
 
 
@@ -174,6 +245,268 @@
             error: function(xhr, status, error) {
                 console.error('Error updating reservation:', error);
                 alert('Error updating reservation. Please try again.');
+            }
+        });
+    }
+
+
+    // Load staff from API
+    function loadStaff() {
+        $.ajax({
+            url: '/api/staff',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken()
+            },
+            success: function(response) {
+                if (response.success) {
+                    renderStaff(response.data);
+                } else {
+                    alert('Error loading staff: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading staff:', error);
+                console.error('Response:', xhr.responseText);
+                console.error('Status:', xhr.status);
+                alert('Error loading staff. Please try again. Status: ' + xhr.status + ', Error: ' + error);
+            }
+        });
+    }
+
+
+    // Render staff in table
+    function renderStaff(staff) {
+        const tbody = $('#staffTableBody');
+        tbody.empty();
+        
+        if (staff.length === 0) {
+            tbody.append('<tr><td colspan="6" class="text-center">No staff members found</td></tr>');
+            return;
+        }
+        
+        staff.forEach(member => {
+            const statusClass = member.status === 'active' ? 'text-success' : 
+                              member.status === 'on-leave' ? 'text-warning' : 'text-danger';
+            
+            const row = `
+                <tr>
+                    <td>${member.name}</td>
+                    <td>${member.email}</td>
+                    <td>${member.position}</td>
+                    <td>${member.department}</td>
+                    <td><span class="${statusClass}">${member.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1" onclick="editStaffMember('${member._id}')">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteStaffMember('${member._id}')">Delete</button>
+                    </td>
+                </tr>
+            `;
+            tbody.append(row);
+        });
+    }
+
+
+    // Load staff for selectors
+    function loadStaffForSelectors() {
+        $.ajax({
+            url: '/api/staff',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken()
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Populate staff selectors
+                    const staffSelects = $('#shiftStaffSelect, #performanceStaffSelect');
+                    staffSelects.empty();
+                    staffSelects.append('<option value="">Select Staff Member</option>');
+                    
+                    response.data.forEach(member => {
+                        staffSelects.append(`<option value="${member._id}">${member.name}</option>`);
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading staff for selectors:', error);
+            }
+        });
+    }
+
+
+    // Create new staff member
+    function createStaffMember(staffData) {
+        $.ajax({
+            url: '/api/staff',
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken(),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(staffData),
+            success: function(response) {
+                if (response.success) {
+                    alert('Staff member created successfully');
+                    $('#staffForm')[0].reset();
+                    $('#staffId').val('');
+                    loadStaff();
+                    loadStaffForSelectors();
+                } else {
+                    alert('Error creating staff member: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error creating staff member:', error);
+                alert('Error creating staff member. Please try again.');
+            }
+        });
+    }
+
+
+    // Update staff member
+    function updateStaffMember(id, staffData) {
+        $.ajax({
+            url: `/api/staff/${id}`,
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken(),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(staffData),
+            success: function(response) {
+                if (response.success) {
+                    alert('Staff member updated successfully');
+                    $('#staffForm')[0].reset();
+                    $('#staffId').val('');
+                    loadStaff();
+                } else {
+                    alert('Error updating staff member: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating staff member:', error);
+                alert('Error updating staff member. Please try again.');
+            }
+        });
+    }
+
+
+    // Edit staff member
+    function editStaffMember(id) {
+        $.ajax({
+            url: `/api/staff/${id}`,
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken()
+            },
+            success: function(response) {
+                if (response.success) {
+                    const staff = response.data;
+                    $('#staffId').val(staff._id);
+                    $('#staffName').val(staff.name);
+                    $('#staffEmail').val(staff.email);
+                    $('#staffPhone').val(staff.phone);
+                    $('#staffPosition').val(staff.position);
+                    $('#staffDepartment').val(staff.department);
+                    $('#staffHireDate').val(new Date(staff.hireDate).toISOString().split('T')[0]);
+                    
+                    // Switch to add staff tab
+                    $('#staffTabs a[href="#add-staff"]').tab('show');
+                } else {
+                    alert('Error loading staff member: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading staff member:', error);
+                alert('Error loading staff member. Please try again.');
+            }
+        });
+    }
+
+
+    // Delete staff member
+    function deleteStaffMember(id) {
+        if (!confirm('Are you sure you want to delete this staff member?')) {
+            return;
+        }
+        
+        $.ajax({
+            url: `/api/staff/${id}`,
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken()
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Staff member deleted successfully');
+                    loadStaff();
+                    loadStaffForSelectors();
+                } else {
+                    alert('Error deleting staff member: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error deleting staff member:', error);
+                alert('Error deleting staff member. Please try again.');
+            }
+        });
+    }
+
+
+    // Add shift to staff member
+    function addShift(staffId, shiftData) {
+        $.ajax({
+            url: `/api/staff/${staffId}/shifts`,
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken(),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(shiftData),
+            success: function(response) {
+                if (response.success) {
+                    alert('Shift added successfully');
+                    $('#shiftStaffSelect').val('');
+                    $('#shiftDate').val('');
+                    $('#shiftStartTime').val('');
+                    $('#shiftEndTime').val('');
+                    $('#shiftType').val('');
+                } else {
+                    alert('Error adding shift: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error adding shift:', error);
+                alert('Error adding shift. Please try again.');
+            }
+        });
+    }
+
+
+    // Update performance metrics
+    function updatePerformance(staffId, performanceData) {
+        $.ajax({
+            url: `/api/staff/${staffId}/performance`,
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + getAuthToken(),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(performanceData),
+            success: function(response) {
+                if (response.success) {
+                    alert('Performance metrics updated successfully');
+                    $('#performanceStaffSelect').val('');
+                    $('#attendanceRate').val('');
+                    $('#punctuality').val('');
+                    $('#overallRating').val('');
+                } else {
+                    alert('Error updating performance metrics: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating performance metrics:', error);
+                alert('Error updating performance metrics. Please try again.');
             }
         });
     }

@@ -12,6 +12,7 @@ const reservationRoutes = require('./routes/reservations');
 const contactRoutes = require('./routes/contact');
 const menuRoutes = require('./routes/menu');
 const authRoutes = require('./routes/auth');
+const staffRoutes = require('./routes/staff'); // Add staff routes
 
 // Initialize app
 const app = express();
@@ -47,6 +48,7 @@ app.use('/api/reservations', reservationRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/menu', menuRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/staff', staffRoutes); // Add staff routes
 
 // Serve frontend HTML files
 app.get('/', (req, res) => {
