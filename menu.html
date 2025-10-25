@@ -99,12 +99,31 @@
 
 
         <!-- Menu Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5" id="menu-section">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
                     <h1 class="mb-5">Most Popular Items</h1>
                 </div>
+                
+                <!-- Search and Filter Bar -->
+                <div class="search-filter-bar wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <input type="text" class="form-control" placeholder="Search menu items...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="filter-options">
+                                <button class="filter-btn active">All</button>
+                                <button class="filter-btn">Popular</button>
+                                <button class="filter-btn">Vegetarian</button>
+                                <button class="filter-btn">Vegan</button>
+                                <button class="filter-btn">Gluten-Free</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         <li class="nav-item">
@@ -121,7 +140,7 @@
                                 <i class="fa fa-hamburger fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">Launch</h6>
+                                    <h6 class="mt-n1 mb-0">Lunch</h6>
                                 </div>
                             </a>
                         </li>
@@ -139,19 +158,37 @@
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="Chicken Burger" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                            <div class="mt-2">
-                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn" data-item-id="1">
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-1.jpg" alt="Chicken Burger">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Chicken Burger</h5>
+                                                <span class="price">$12.99</span>
+                                            </div>
+                                            <p class="card-text">Juicy chicken breast with fresh lettuce, tomato, and special sauce.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.5</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>15 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>450 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="1">
                                                     <i class="fas fa-cube"></i> AR Preview
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn" data-voice-keyword="chicken burger">
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="chicken burger">
                                                     <i class="fas fa-microphone"></i> Voice Order
                                                 </button>
                                             </div>
@@ -159,19 +196,37 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                            <div class="mt-2">
-                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn" data-item-id="2">
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-2.jpg" alt="Beef Steak">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Beef Steak</h5>
+                                                <span class="price">$19.99</span>
+                                            </div>
+                                            <p class="card-text">Premium beef steak cooked to perfection with seasonal vegetables.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.8</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>25 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>650 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="2">
                                                     <i class="fas fa-cube"></i> AR Preview
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn" data-voice-keyword="chicken burger">
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="beef steak">
                                                     <i class="fas fa-microphone"></i> Voice Order
                                                 </button>
                                             </div>
@@ -179,74 +234,62 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-3.jpg" alt="Caesar Salad">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Caesar Salad</h5>
+                                                <span class="price">$8.99</span>
+                                            </div>
+                                            <p class="card-text">Fresh romaine lettuce with caesar dressing and croutons.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.3</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>10 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>250 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-4.jpg" alt="Pancakes">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Fluffy Pancakes</h5>
+                                                <span class="price">$7.99</span>
+                                            </div>
+                                            <p class="card-text">Fluffy pancakes with maple syrup and fresh berries.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.6</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>12 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>400 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -255,98 +298,138 @@
                         <div id="tab-2" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="Chicken Burger" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-5.jpg" alt="Fruit Smoothie">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Fruit Smoothie</h5>
+                                                <span class="price">$5.99</span>
+                                            </div>
+                                            <p class="card-text">Refreshing fruit smoothie with banana and mixed berries.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.4</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>5 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>200 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="5">
+                                                    <i class="fas fa-cube"></i> AR Preview
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="fruit smoothie">
+                                                    <i class="fas fa-microphone"></i> Voice Order
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-6.jpg" alt="Chocolate Cake">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Chocolate Cake</h5>
+                                                <span class="price">$6.99</span>
+                                            </div>
+                                            <p class="card-text">Rich chocolate cake with vanilla ice cream.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.7</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>8 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>550 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="6">
+                                                    <i class="fas fa-cube"></i> AR Preview
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="chocolate cake">
+                                                    <i class="fas fa-microphone"></i> Voice Order
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-7.jpg" alt="Grilled Salmon">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Grilled Salmon</h5>
+                                                <span class="price">$16.99</span>
+                                            </div>
+                                            <p class="card-text">Fresh salmon grilled with herbs and lemon.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.9</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>20 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>420 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-8.jpg" alt="Vegetable Stir Fry">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Vegetable Stir Fry</h5>
+                                                <span class="price">$11.99</span>
+                                            </div>
+                                            <p class="card-text">Mixed vegetables stir-fried with tofu and soy sauce.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.5</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>15 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>320 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -355,98 +438,138 @@
                         <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="Chicken Burger" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-1.jpg" alt="Chicken Burger">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Chicken Burger</h5>
+                                                <span class="price">$12.99</span>
+                                            </div>
+                                            <p class="card-text">Juicy chicken breast with fresh lettuce, tomato, and special sauce.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.5</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>15 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>450 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="1">
+                                                    <i class="fas fa-cube"></i> AR Preview
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="chicken burger">
+                                                    <i class="fas fa-microphone"></i> Voice Order
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-2.jpg" alt="Beef Steak">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Beef Steak</h5>
+                                                <span class="price">$19.99</span>
+                                            </div>
+                                            <p class="card-text">Premium beef steak cooked to perfection with seasonal vegetables.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.8</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>25 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>650 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-sm btn-outline-primary ar-preview-btn btn-pulse" data-item-id="2">
+                                                    <i class="fas fa-cube"></i> AR Preview
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success ms-2 voice-order-btn btn-glow" data-voice-keyword="beef steak">
+                                                    <i class="fas fa-microphone"></i> Voice Order
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-3.jpg" alt="Caesar Salad">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Caesar Salad</h5>
+                                                <span class="price">$8.99</span>
+                                            </div>
+                                            <p class="card-text">Fresh romaine lettuce with caesar dressing and croutons.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.3</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>10 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>250 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
+                                    <div class="food-item-card">
+                                        <img class="card-img" src="img/menu-4.jpg" alt="Pancakes">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h5 class="card-title mb-0">Fluffy Pancakes</h5>
+                                                <span class="price">$7.99</span>
+                                            </div>
+                                            <p class="card-text">Fluffy pancakes with maple syrup and fresh berries.</p>
+                                            <div class="item-meta">
+                                                <div class="meta-item">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>4.6</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>12 min</span>
+                                                </div>
+                                                <div class="meta-item">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>400 kcal</span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn btn-add-cart btn-animated">Add to Cart</button>
+                                                <button class="btn btn-customize">Customize</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -584,19 +707,30 @@
         <i class="fas fa-robot"></i>
     </button>
 
+    <!-- Floating Cart -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">3</span>
+    </div>
+    
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Advanced Features Buttons -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050; bottom: 100px !important;">
         <div class="d-flex flex-column align-items-end">
             <!-- Voice Ordering Button -->
-            <button id="voiceOrderBtn" class="btn btn-primary rounded-circle mb-2" style="width: 50px; height: 50px;" aria-label="Voice ordering">
+            <button id="voiceOrderBtn" class="btn btn-primary rounded-circle mb-2 btn-pulse" style="width: 50px; height: 50px;" aria-label="Voice ordering">
                 <i class="fas fa-microphone"></i>
             </button>
             <!-- QR Code Ordering Button -->
-            <button id="qrOrderBtn" class="btn btn-success rounded-circle mb-2" style="width: 50px; height: 50px;" aria-label="QR code ordering">
+            <button id="qrOrderBtn" class="btn btn-success rounded-circle mb-2 btn-glow" style="width: 50px; height: 50px;" aria-label="QR code ordering">
                 <i class="fas fa-qrcode"></i>
             </button>
             <!-- AR Viewer Button -->
-            <button id="arViewerBtn" class="btn btn-info rounded-circle" style="width: 50px; height: 50px;" aria-label="AR viewer">
+            <button id="arViewerBtn" class="btn btn-info rounded-circle btn-animated" style="width: 50px; height: 50px;" aria-label="AR viewer">
                 <i class="fas fa-cube"></i>
             </button>
         </div>
@@ -663,6 +797,7 @@
     <script src="js/chatbot.js"></script>
     <script src="js/qrcode.js"></script>
     <script src="js/i18n.js"></script>
+    <script src="js/interactive-features.js"></script>
 </body>
 
 </html>
