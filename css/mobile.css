@@ -1,0 +1,217 @@
+/* Mobile Responsive Styles */
+
+@media (max-width: 991.98px) {
+    /* Navbar adjustments */
+    .navbar-brand h1 {
+        font-size: 1.5rem;
+    }
+    
+    .navbar-brand small {
+        font-size: 0.7rem;
+    }
+    
+    /* Hero section adjustments */
+    .hero-header {
+        padding: 30px 0;
+    }
+    
+    .display-3 {
+        font-size: 2rem;
+    }
+    
+    /* Food item cards */
+    .food-item-card {
+        margin-bottom: 20px;
+    }
+    
+    .card-img {
+        height: 180px;
+    }
+    
+    /* Search and filter bar */
+    .search-filter-bar {
+        padding: 15px;
+    }
+    
+    .filter-options {
+        margin-top: 15px;
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+    
+    /* Tab navigation */
+    .nav-pills .nav-link {
+        margin: 5px;
+        padding: 10px;
+    }
+    
+    .nav-pills .nav-link i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-pills .nav-link h6 {
+        font-size: 0.9rem;
+    }
+    
+    /* Floating buttons */
+    .floating-cart,
+    .dark-mode-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .cart-count {
+        width: 20px;
+        height: 20px;
+        font-size: 0.6rem;
+    }
+    
+    /* Advanced feature buttons */
+    .position-fixed.bottom-0.end-0 {
+        bottom: 80px !important;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Toast notifications */
+    .toast-notification {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    /* Food item cards */
+    .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .card-img {
+        height: 220px;
+    }
+    
+    /* Search and filter */
+    .search-filter-bar .row > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-add-cart,
+    .btn-customize {
+        width: 100%;
+    }
+    
+    /* Item meta */
+    .item-meta {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .meta-item {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    /* Padding adjustments */
+    .container-xxl {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Hero section */
+    .hero-header .container {
+        padding: 20px 15px;
+    }
+    
+    .display-3 {
+        font-size: 1.8rem;
+    }
+    
+    p.text-white {
+        font-size: 0.9rem;
+    }
+    
+    /* Card adjustments */
+    .card-img {
+        height: 160px;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .price {
+        font-size: 1.1rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    /* Floating buttons */
+    .position-fixed.bottom-0.end-0 {
+        bottom: 70px !important;
+        right: 15px;
+    }
+    
+    /* Toast notifications */
+    .toast-notification {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .toast-icon {
+        font-size: 1rem;
+    }
+}
+
+/* Ensure minimum font size for readability */
+@media (max-width: 400px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .btn {
+        font-size: 0.8rem;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .card-text {
+        font-size: 0.85rem;
+    }
+    
+    .price {
+        font-size: 1rem;
+    }
+}
