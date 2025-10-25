@@ -101,6 +101,56 @@
     border-radius: 10px;
 }
 
+/*** Animated Buttons ***/
+.btn-animated {
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.btn-animated::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-animated:hover::before {
+    left: 100%;
+}
+
+.btn-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(254, 161, 22, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(254, 161, 22, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(254, 161, 22, 0);
+    }
+}
+
+.btn-glow {
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(254, 161, 22, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(254, 161, 22, 0.8);
+    }
+}
 
 /*** Navbar ***/
 .navbar-dark .navbar-nav .nav-link {
@@ -208,6 +258,16 @@
     100% { 
         transform: rotate(360deg); 
     } 
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animated-heartbeat {
+    animation: heartbeat 1.5s infinite;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -1076,6 +1136,54 @@
     justify-content: center;
     font-size: 0.7rem;
     font-weight: 600;
+}
+
+/*** Dark Mode ***/
+.dark-mode {
+    --dark: #f8f9fa;
+    --light: #0F172B;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.dark-mode .bg-dark {
+    background-color: #0a0f1d !important;
+}
+
+.dark-mode .text-white {
+    color: #f8f9fa !important;
+}
+
+.dark-mode .navbar-dark {
+    background-color: #0a0f1d !important;
+}
+
+.dark-mode .hero-header {
+    background: linear-gradient(rgba(10, 15, 29, .9), rgba(10, 15, 29, .9)), url(../img/bg-hero.jpg);
+}
+
+.dark-mode .food-item-card {
+    background: #1a2439;
+    color: #f8f9fa;
+}
+
+.dark-mode .food-item-card .card-text {
+    color: #adb5bd;
+}
+
+.dark-mode .search-filter-bar {
+    background: #1a2439;
+}
+
+.dark-mode .filter-btn {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f8f9fa;
+}
+
+.dark-mode .filter-btn.active {
+    background: var(--primary-gradient);
+    color: white;
 }
 
 /*** Dark Mode Toggle ***/
