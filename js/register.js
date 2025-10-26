@@ -90,7 +90,23 @@
             },
             error: function(xhr, status, error) {
                 console.error('Error registering:', error);
-                alert('Error registering. Please try again.');
+                console.error('XHR:', xhr);
+                console.error('Status:', status);
+                
+                // Provide more detailed error information
+                let errorMessage = 'Error registering. Please try again.';
+                
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = 'Error: ' + xhr.responseJSON.message;
+                } else if (xhr.status === 0) {
+                    errorMessage = 'Network error. Please check your connection and try again.';
+                } else if (xhr.status === 400) {
+                    errorMessage = 'Invalid registration data. Please check your inputs.';
+                } else if (xhr.status === 500) {
+                    errorMessage = 'Server error. Please try again later.';
+                }
+                
+                alert(errorMessage);
             }
         });
     });

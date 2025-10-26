@@ -82,7 +82,21 @@
                 console.error('Error logging in:', error);
                 console.error('Response:', xhr.responseText);
                 console.error('Status:', xhr.status);
-                alert('Error logging in. Please try again. Status: ' + xhr.status + ', Error: ' + error);
+                
+                // Provide more detailed error information
+                let errorMessage = 'Error logging in. Please try again.';
+                
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = 'Error: ' + xhr.responseJSON.message;
+                } else if (xhr.status === 0) {
+                    errorMessage = 'Network error. Please check your connection and try again.';
+                } else if (xhr.status === 401) {
+                    errorMessage = 'Invalid credentials. Please check your email and password.';
+                } else if (xhr.status === 500) {
+                    errorMessage = 'Server error. Please try again later.';
+                }
+                
+                alert(errorMessage);
             }
         });
     });
