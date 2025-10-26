@@ -49,6 +49,7 @@
         const email = $('#email').val();
         const password = $('#password').val();
         const confirmPassword = $('#confirmPassword').val();
+        const isAdmin = $('#isAdmin').is(':checked');
         
         // Simple validation
         if (!name || !email || !password || !confirmPassword) {
@@ -73,15 +74,31 @@
             password: password
         };
         
+        // Determine endpoint based on admin checkbox
+        const endpoint = isAdmin ? '/api/auth/register-admin' : '/api/auth/register';
+        
         // Send to backend API
         $.ajax({
-            url: '/api/auth/register',
+            url: endpoint,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(registerData),
             success: function(response) {
                 if (response.success) {
-                    alert('Registration successful! You can now login.');
+                    const userType = isAdmin ? 'Admin' : 'User';
+                    alert(`${userType} registration successful! You can now login.`);
+                    
+                    // Emit real-time event for admin notification
+                    if (typeof io !== 'undefined') {
+                        const socket = io();
+                        socket.emit('userRegistered', {
+                            name: response.data.name,
+                            email: response.data.email,
+                            role: response.data.role,
+                            timestamp: new Date()
+                        });
+                    }
+                    
                     // Redirect to login page
                     window.location.href = 'login.html';
                 } else {

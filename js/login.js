@@ -72,8 +72,27 @@
                     localStorage.setItem('authToken', response.data.token);
                     localStorage.setItem('user', JSON.stringify(response.data));
                     
-                    // Redirect to admin dashboard
-                    window.location.href = 'admin.html';
+                    // Show welcome message with user role
+                    const userType = response.data.role === 'admin' ? 'Admin' : 'User';
+                    alert(`Welcome ${response.data.name}! You are logged in as ${userType}.`);
+                    
+                    // Emit real-time event for admin notification
+                    if (typeof io !== 'undefined') {
+                        const socket = io();
+                        socket.emit('userLoggedIn', {
+                            name: response.data.name,
+                            email: response.data.email,
+                            role: response.data.role,
+                            timestamp: new Date()
+                        });
+                    }
+                    
+                    // Redirect based on user role
+                    if (response.data.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
                 } else {
                     alert('Error: ' + response.message);
                 }

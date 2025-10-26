@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
 
 // Load environment variables
 dotenv.config();
@@ -16,6 +18,14 @@ const staffRoutes = require('./routes/staff'); // Add staff routes
 
 // Initialize app
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -95,6 +105,34 @@ app.get('/testimonial', (req, res) => {
   res.sendFile(path.join(__dirname, 'testimonial.html'));
 });
 
+// Socket.IO connection handling
+io.on('connection', (socket) => {
+  console.log('A user connected:', socket.id);
+  
+  // Handle admin notifications
+  socket.on('adminNotification', (data) => {
+    // Broadcast to all connected admins
+    socket.broadcast.emit('newAdminNotification', data);
+  });
+  
+  // Handle user registration event
+  socket.on('userRegistered', (userData) => {
+    // Notify admins of new user registration
+    socket.broadcast.emit('newUserRegistered', userData);
+  });
+  
+  // Handle user login event
+  socket.on('userLoggedIn', (userData) => {
+    // Notify admins of user login
+    socket.broadcast.emit('userLoggedInNotification', userData);
+  });
+  
+  // Handle disconnect
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -102,6 +140,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
