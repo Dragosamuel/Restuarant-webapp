@@ -26,6 +26,7 @@
     
     .card-img {
         height: 180px;
+        border-radius: 15px 15px 0 0;
     }
     
     /* Search and filter bar */
@@ -96,8 +97,19 @@
         max-width: 100%;
     }
     
+    .food-item-card .row {
+        flex-direction: column;
+    }
+    
+    .food-item-card .col-md-5,
+    .food-item-card .col-md-7 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
     .card-img {
         height: 220px;
+        border-radius: 15px 15px 0 0;
     }
     
     /* Search and filter */
@@ -187,6 +199,16 @@
     .toast-icon {
         font-size: 1rem;
     }
+    
+    /* Filter buttons */
+    .filter-options {
+        gap: 5px;
+    }
+    
+    .filter-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
 }
 
 /* Ensure minimum font size for readability */
@@ -213,5 +235,19 @@
     
     .price {
         font-size: 1rem;
+    }
+    
+    /* Tab navigation */
+    .nav-pills .nav-link {
+        padding: 8px;
+        margin: 3px;
+    }
+    
+    .nav-pills .nav-link i {
+        font-size: 1.2rem;
+    }
+    
+    .nav-pills .nav-link h6 {
+        font-size: 0.8rem;
     }
 }

@@ -968,6 +968,9 @@
     overflow: hidden;
     margin-bottom: 25px;
     border: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .food-item-card:hover {
@@ -975,11 +978,15 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+.food-item-card .row {
+    height: 100%;
+}
+
 .food-item-card .card-img {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px 0 0 15px;
     transition: var(--transition);
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -989,6 +996,9 @@
 
 .food-item-card .card-body {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .food-item-card .card-title {
@@ -1002,6 +1012,7 @@
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 15px;
+    flex-grow: 1;
 }
 
 .food-item-card .price {
@@ -1016,6 +1027,8 @@
     justify-content: space-between;
     margin-bottom: 15px;
     font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .food-item-card .meta-item {
@@ -1032,6 +1045,7 @@
 .food-item-card .btn-group {
     display: flex;
     gap: 10px;
+    margin-top: auto;
 }
 
 .food-item-card .btn-add-cart {
