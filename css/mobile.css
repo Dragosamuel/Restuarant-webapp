@@ -58,18 +58,11 @@
         font-size: 0.9rem;
     }
     
-    /* Floating buttons */
-    .floating-cart,
+    /* Floating buttons (cart removed) */
     .dark-mode-toggle {
         width: 45px;
         height: 45px;
         font-size: 1rem;
-    }
-    
-    .cart-count {
-        width: 20px;
-        height: 20px;
-        font-size: 0.6rem;
     }
     
     /* Advanced feature buttons */

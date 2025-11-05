@@ -1,10 +1,8 @@
 // Interactive Features JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
-    initDarkMode();
     initToastNotifications();
     initFilterButtons();
-    initFloatingCart();
     initAddToCartButtons();
     initCustomizeButtons();
     initSearchFunctionality();
@@ -15,36 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initQRCodeOrdering();
 });
 
-// Dark Mode Toggle
-function initDarkMode() {
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const darkModeIcon = darkModeToggle.querySelector('i');
-    
-    // Check for saved dark mode preference
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        darkModeIcon.classList.remove('fa-moon');
-        darkModeIcon.classList.add('fa-sun');
-    }
-    
-    darkModeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        
-        // Update icon
-        if (document.body.classList.contains('dark-mode')) {
-            darkModeIcon.classList.remove('fa-moon');
-            darkModeIcon.classList.add('fa-sun');
-            localStorage.setItem('darkMode', 'true');
-            showToast('Dark mode enabled', 'success');
-        } else {
-            darkModeIcon.classList.remove('fa-sun');
-            darkModeIcon.classList.add('fa-moon');
-            localStorage.setItem('darkMode', 'false');
-            showToast('Light mode enabled', 'success');
-        }
-    });
-}
+// Dark mode functionality removed — toggle UI and handlers were removed per request.
 
 // Toast Notifications
 function initToastNotifications() {
@@ -116,14 +85,7 @@ function initFilterButtons() {
 }
 
 // Floating Cart
-function initFloatingCart() {
-    const floatingCart = document.querySelector('.floating-cart');
-    
-    floatingCart.addEventListener('click', function() {
-        showToast('Cart opened - 3 items in cart', 'success');
-        // In a real implementation, you would open the cart modal here
-    });
-}
+// Floating cart functionality removed per request. UI no longer present; keep feature stub-free.
 
 // Add to Cart Buttons
 function initAddToCartButtons() {
@@ -137,8 +99,10 @@ function initAddToCartButtons() {
             
             // Update cart count
             const cartCount = document.querySelector('.cart-count');
-            let count = parseInt(cartCount.textContent);
-            cartCount.textContent = count + 1;
+            if (cartCount) {
+                const current = parseInt(cartCount.textContent, 10) || 0;
+                cartCount.textContent = current + 1;
+            }
             
             // Show toast notification
             showToast(`Added ${itemName} to your cart!`, 'success');
